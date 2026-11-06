@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Warm Table View · A hand up for neighbours in need</title>
+<meta name="description" content="Crowd-funded, crowd-sourced and goal-driven: gear and food for neighbours in need today, a skills centre, halfway house and 3 meals a day tomorrow.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⛰️</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf6ee;--card:#fff;--ink:#14263a;--mute:#5b6b7b;--navy:#0f2a44;--sun:#f26a1b;--sun2:#ffb347;--sea:#1b7f8c;--line:#e8dfd0;--r:20px}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1724;--card:#12263a;--ink:#f3ece1;--mute:#a9b7c4;--navy:#06101b;--line:#223a52}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font:17px/1.6 'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:env(safe-area-inset-bottom,0px)}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.1;letter-spacing:-.02em}
+a{color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding:0 22px}
+nav{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+.logo{font-family:'Fraunces',serif;font-weight:800;font-size:1.2rem;text-decoration:none}
+.logo b{color:var(--sun)}
+.btn{display:inline-block;background:var(--sun);color:#fff;font:700 1rem 'DM Sans',sans-serif;text-decoration:none;padding:14px 26px;border-radius:99px;border:0;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.s{padding:9px 20px;font-size:.9rem}
+.btn.ghost{background:transparent;border:2px solid currentColor}
+.hero{background:linear-gradient(175deg,var(--navy),#17476b 65%,var(--sea));color:#fff;padding:70px 0 150px;position:relative;overflow:hidden}
+.sun{position:absolute;right:8%;top:40px;width:120px;height:120px;border-radius:50%;background:var(--sun);opacity:.9}
+.mtn{position:absolute;left:0;bottom:-1px;width:100%;height:150px}
+.hero .wrap{position:relative;z-index:1}
+h1{font-size:clamp(2.7rem,9vw,5.2rem);font-weight:800;max-width:11ch}
+h1 em{color:var(--sun2);font-style:normal}
+.hero p{max-width:32em;margin:20px 0 28px;font-size:1.12rem;opacity:.93}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.badge{display:inline-block;margin-top:24px;background:var(--sun2);color:#14263a;font-weight:700;font-size:.82rem;padding:7px 14px;border-radius:99px}
+section{padding:66px 0}
+.alt{background:var(--card)}
+.kick{color:var(--sun);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.8rem}
+h2{font-size:clamp(1.9rem,5vw,2.8rem);margin:8px 0 12px}
+.lead{color:var(--mute);max-width:37em}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin-top:26px}
+.two{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));margin-top:26px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.alt .card{background:var(--bg)}
+.card h3{font-size:1.18rem;margin:4px 0}
+.card p,.card li{color:var(--mute);font-size:.95rem}
+.card ul{padding-left:1.1em;margin-top:6px}
+.ico{font-size:1.8rem}
+.n{font-family:'Fraunces',serif;font-size:2.3rem;font-weight:800;color:var(--sun);line-height:1}
+.dark{background:var(--navy);color:#fff;border-radius:28px;padding:32px}
+.dark h2{margin-top:0}
+.bar{height:16px;border-radius:99px;background:rgba(255,255,255,.15);overflow:hidden;margin:8px 0 4px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sun),var(--sun2));border-radius:99px;transition:width 1.3s ease}
+.meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;opacity:.9;font-size:.9rem}
+.g{margin-top:20px}.g b{font-size:1.02rem}
+.stage{display:grid;grid-template-columns:auto 1fr;gap:16px;margin-top:16px}
+.dot{width:46px;height:46px;border-radius:50%;background:var(--line);display:grid;place-items:center;font-size:1.3rem}
+.on .dot{background:var(--sun)}
+.stage h3{font-size:1.15rem}.stage p{color:var(--mute);font-size:.95rem}
+form{display:grid;gap:10px;margin-top:12px}
+input,textarea,select{font:inherit;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.note{font-size:.85rem;color:var(--mute);margin-top:12px}
+.pill{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:4px 12px;margin:3px 3px 0 0;font-size:.9rem}
+.alt .pill{background:var(--card)}
+details{border-bottom:1px solid var(--line);padding:14px 0}
+summary{font-weight:700;cursor:pointer}
+details p{color:var(--mute);margin-top:8px;font-size:.97rem}
+footer{padding:34px 0 56px;border-top:1px solid var(--line);color:var(--mute);font-size:.88rem}
+footer p+p{margin-top:8px}
+section+section{border-top:1px solid var(--line)}
+.post{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.post:last-child{border:0}
+.flag{width:48px;height:48px;border-radius:50%;background:var(--line);display:grid;place-items:center;font-weight:800;font-family:'Fraunces',serif;font-size:1.2rem}
+.post.done .flag{background:var(--sea);color:#fff}.post.now .flag{background:var(--sun);color:#fff}
+.post h3{font-size:1.2rem}.post .m{color:var(--sea);font-weight:700;font-size:.9rem}.post p{color:var(--mute);font-size:.95rem;margin-top:4px}
+.tag{font-size:.7rem;font-weight:700;background:var(--sun);color:#fff;border-radius:99px;padding:2px 9px;margin-left:6px;vertical-align:middle}
+.club input[type=range]{padding:0;accent-color:var(--sun2)}
+.club .big{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:800;color:var(--sun2);line-height:1.1}
+.chips button{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.35);border-radius:14px;padding:9px 16px;font:700 .95rem 'DM Sans',sans-serif;cursor:pointer;margin:0 8px 8px 0}
+.chips button[aria-pressed=true]{background:var(--sun2);border-color:var(--sun2);color:#14263a}
+.stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-top:22px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;text-align:center}
+.stat b{display:block;font-family:'Fraunces',serif;font-size:2rem;color:var(--sun)}
+.stat span{font-size:.85rem;color:var(--mute)}
+.ub{font-family:'Fraunces',serif;font-style:italic;font-size:1.15rem;margin-top:16px;opacity:.9}
+.quote{text-align:center}.quote h2{margin:0 0 8px;color:#fff}.quote p{max-width:34em;margin:0 auto;opacity:.9}
+.hl{display:grid;gap:12px}
+.hl .card{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.hotline{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.hotline:last-child{border:0}.hotline a{font-weight:700;color:var(--sun);text-decoration:none;white-space:nowrap}
+details ul{padding-left:1.1em;color:var(--mute);margin-top:8px;font-size:.96rem}details li{margin:4px 0}
+@media(max-width:560px){section{padding:50px 0}.dark{padding:24px}.hero{padding:54px 0 130px}.sun{width:80px;height:80px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="#top">Warm <b>Table View</b></a><a class="btn s" href="#donate">Donate</a></div></nav>
+
+<header class="hero" id="top"><div class="sun"></div>
+<svg class="mtn" viewBox="0 0 1000 150" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="500" cy="38" rx="210" ry="14" fill="#fff" opacity=".35"/><ellipse cx="420" cy="50" rx="150" ry="10" fill="#fff" opacity=".25"/><path d="M0 150V112L130 98 250 66 330 40 390 34H640L700 42 790 78 890 100 1000 112V150Z" fill="#0b1f33"/></svg>
+<div class="wrap">
+  <h1>Under the mountain, <em>nobody</em> left out.</h1>
+  <p>From Table View you can see the whole of Table Mountain. We believe everyone beneath it deserves a roof, a warm meal and a way forward. Crowd-funded, crowd-sourced and driven by one goal.</p>
+  <div class="row"><a class="btn" href="#donate">Donate</a><a class="btn ghost" href="#goalposts">See our goalposts</a></div>
+  <span class="badge">🇿🇦 Proudly Mlungu concept &amp; prototype</span>
+  <p class="ub">Umuntu ngumuntu ngabantu: I am because we are.</p>
+  <p style="margin:10px 0 0;font-size:.95rem;opacity:.85;max-width:none">A think tank of opportunity · open source · progressive</p>
+</div></header>
+
+<section><div class="wrap">
+  <span class="kick">The end goal</span>
+  <h2>A hand up, not a hand-out.</h2>
+  <p class="lead">We start with gear and food today. Every donation, hour and skill moves us up the mountain towards a place where people can learn, eat and live with dignity, then step back into society.</p>
+  <div class="stage on"><div class="dot">🎒</div><div><h3>Now: gear, clothes &amp; food</h3><p>Collect and hand out blankets, tents, backpacks, clothing, sanitary items and non-perishables.</p></div></div>
+  <div class="stage"><div class="dot">🛠️</div><div><h3>Next: a community skills centre</h3><p>Free classes and workshops run by neighbours with skills: CVs, trades, computers, cooking and more.</p></div></div>
+  <div class="stage"><div class="dot">🏠</div><div><h3>Then: a halfway house</h3><p>A safe, stable bed for people working towards a job and a home of their own.</p></div></div>
+  <div class="stage"><div class="dot">🍲</div><div><h3>Always: 3 meals a day</h3><p>Breakfast, lunch and supper for everyone in the programme.</p></div></div>
+  <div class="dark g" style="margin-top:30px" id="goals"></div>
+  <p class="note">Targets are placeholders until we have real quotes. Progress is published openly.</p>
+</div></section>
+
+
+
+<section id="standard"><div class="wrap">
+  <div class="dark quote">
+    <span class="kick" style="color:var(--sun2)">Ubuntu</span>
+    <h2>Together, we are one.</h2>
+    <p>Nobody here is a “project”. The person sleeping under the bridge, the volunteer sorting blankets and the neighbour giving R50 a month are all part of one community. Ubuntu is our working rule, and it means we are only as strong as our weakest link, so we strengthen that link first.</p>
+  </div>
+  <span class="kick" style="display:block;margin-top:44px">Our core mission</span>
+  <h2>Quality social accountability. Only the best.</h2>
+  <p class="lead">Helping people is not an excuse for sloppy work. People in crisis deserve the same standard as paying customers. These are the promises we hold ourselves to.</p>
+  <div class="hl" style="margin-top:24px">
+    <div class="card"><div class="ico">🔍</div><div><h3>Independently reviewed</h3><p>Our books are reviewed each year by an independent accounting professional. Our programme is reviewed by three community reviewers who are not on our team. Every report is posted online.</p></div></div>
+    <div class="card"><div class="ico">🛡️</div><div><h3>Reliable people, properly trained</h3><p>Every volunteer is screened, signs our code of conduct, completes a short training and works with a buddy before working alone.</p></div></div>
+    <div class="card"><div class="ico">⛓️</div><div><h3>The weakest-link rule</h3><p>Each month we name our weakest area, whether that’s storage, safety, volunteers or cash, and fix it before we grow. No expansion on a shaky foundation.</p></div></div>
+    <div class="card"><div class="ico">🪟</div><div><h3>Transparent by default</h3><p>Ledger, policies, reviews and results are published on this page. Community-run means the community can check our work.</p></div></div>
+    <div class="card"><div class="ico">✍️</div><div><h3>Original and honest</h3><p>Every word, number and promise here is our own. Estimates are labelled as estimates, and nothing is copied from other organisations.</p></div></div>
+  </div>
+</div></section>
+
+
+<section id="thinktank"><div class="wrap">
+  <span class="kick">A think tank of opportunity</span>
+  <h2>Not a hand-out. A way of thinking.</h2>
+  <p class="lead">Warm Table View is a think tank of opportunity and collective solutions: a living, open idea that gets better every time a neighbour adds to it. We don’t do pity. We build chances, and we measure whether they work.</p>
+  <div class="grid">
+    <div class="card"><div class="ico">💡</div><h3>Collective solutions</h3><p>The best ideas come from the people closest to the problem: residents, volunteers and people with lived experience.</p></div>
+    <div class="card"><div class="ico">🔄</div><h3>Ever-evolving</h3><p>Nothing here is fixed. We test, learn, change and publish what happened.</p></div>
+    <div class="card"><div class="ico">🕊️</div><h3>Non-governed</h3><p>No government, party, church or single owner controls this. Decisions are made openly, by the community, under rules anyone can read.</p></div>
+    <div class="card"><div class="ico">🔓</div><h3>Open source</h3><p>Our code, policies and playbooks are free. Any suburb can copy them, improve them and run their own.</p></div>
+    <div class="card"><div class="ico">📈</div><h3>Progressive</h3><p>We aim to uplift and incentivise, and to move people forward rather than keep them where they are.</p></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>How an idea becomes real</h3>
+    <div class="stage on" style="margin-top:10px"><div class="dot">1</div><div><h3>Propose</h3><p>Anyone can suggest a solution, big or small.</p></div></div>
+    <div class="stage"><div class="dot">2</div><div><h3>Pilot for 30 days</h3><p>We try it small, with a clear measure of success.</p></div></div>
+    <div class="stage"><div class="dot">3</div><div><h3>Publish the result</h3><p>Honest numbers, whether it worked or not.</p></div></div>
+    <div class="stage"><div class="dot">4</div><div><h3>Keep, change or drop</h3><p>The community decides, and the playbook updates.</p></div></div>
+  </div>
+  <div class="two">
+    <div class="card"><h3>Submit an idea</h3><p>What would open a door for someone in Table View?</p>
+      <form id="if"><input name="n" placeholder="Your name (optional)"><textarea name="d" rows="3" placeholder="Your idea or solution" required></textarea><button class="btn" type="submit">Send on WhatsApp</button></form></div>
+    <div class="card"><h3>Take it. Improve it. Share it.</h3><p>Everything we build is open source. Copy this site and playbook for your own suburb, and tell us what you improved.</p>
+      <p style="margin-top:10px"><b>Version:</b> 0.1 prototype</p>
+      <ul><li>v0.1: first public prototype</li><li>Next: your ideas, tested and published</li></ul>
+      <p class="note">Planned licence: code under MIT, writing and policies under CC BY-SA. To be confirmed when the repository is public.</p></div>
+  </div>
+</div></section>
+
+<section class="alt" id="goalposts"><div class="wrap">
+  <span class="kick">Goals &amp; goalposts</span>
+  <h2>Five ledges up the mountain.</h2>
+  <p class="lead">Big goals fail when they’re vague. Each goalpost below has a clear finish line, and we only move up when the last one is ticked. Progress is posted here.</p>
+  <div class="card" id="posts" style="margin-top:24px"></div>
+</div></section>
+
+<section id="club"><div class="wrap">
+  <span class="kick">The Table Club</span>
+  <h2>Small monthly gifts. Big, steady change.</h2>
+  <p class="lead">Instead of waiting for one big donor, Table View neighbours chip in a little every month. Slide to see what a community can do together.</p>
+  <div class="dark club" style="margin-top:24px">
+    <div class="chips" id="amts" role="group" aria-label="Monthly amount"></div>
+    <label for="mem" style="opacity:.85;font-size:.95rem">Neighbours in the club: <b id="mv"></b></label>
+    <input id="mem" type="range" min="10" max="1000" step="10" value="200">
+    <p style="margin-top:18px;opacity:.85">Together that’s</p>
+    <div class="big" id="tot"></div>
+    <p style="margin-top:8px" id="out"></p>
+    <p class="note" style="color:#fff;opacity:.7" id="nn"></p>
+    <p style="margin-top:16px"><a class="btn" href="#" id="jc">Join the Table Club</a></p>
+  </div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <span class="kick">Real solutions</span>
+  <h2>Smart, cheap and ready now.</h2>
+  <div class="grid">
+    <div class="card"><div class="ico">🏫</div><h3>Borrow before we build</h3><p>Run skills days in church, school and community halls on weekends. No building needed to start teaching.</p></div>
+    <div class="card"><div class="ico">🥗</div><h3>Rescue surplus food</h3><p>Ask Table View shops, restaurants and complexes for good surplus food. It makes 3 meals a day affordable.</p></div>
+    <div class="card"><div class="ico">🏡</div><h3>Use empty property</h3><p>Ask owners of vacant buildings for a low-rent or donated lease. That gets the halfway house open sooner and cheaper.</p></div>
+    <div class="card"><div class="ico">🤝</div><h3>Open-door employers</h3><p>Local businesses pledge to give one trial shift or interview to a graduate.</p></div>
+    <div class="card"><div class="ico">⏱️</div><h3>Time bank</h3><p>Every volunteer hour is logged. Hours become badges, references and priority for programme places.</p></div>
+    <div class="card"><div class="ico">📊</div><h3>Live open ledger</h3><p>Income, spending, items and hours posted openly, so anyone can check us.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <span class="kick">Re-entry</span>
+  <h2>Five keys back into society.</h2>
+  <p class="lead">Losing these five things is what keeps people stuck. Our programme helps people get each one back.</p>
+  <div class="grid">
+    <div class="card"><div class="n">1</div><h3>ID</h3><p>Help replacing a lost ID and key documents.</p></div>
+    <div class="card"><div class="n">2</div><h3>Address</h3><p>A reliable address for post, forms and job applications.</p></div>
+    <div class="card"><div class="n">3</div><h3>Phone &amp; bank</h3><p>A charged phone and a basic bank account.</p></div>
+    <div class="card"><div class="n">4</div><h3>CV &amp; reference</h3><p>A written CV and a signed volunteer reference.</p></div>
+    <div class="card"><div class="n">5</div><h3>First job</h3><p>A trial shift with an open-door employer.</p></div>
+  </div>
+  <div class="stats" id="stats"></div>
+</div></section>
+
+
+<section id="care"><div class="wrap">
+  <span class="kick">Trauma-informed care</span>
+  <h2>Dignity first. Healing with professionals.</h2>
+  <p class="lead">Many people on the street have lived through loss, violence or abuse. We treat everyone with that in mind, and we are honest about who can do what.</p>
+  <div class="grid">
+    <div class="card"><div class="ico">🤲</div><h3>Every volunteer</h3><p>Trained in trauma-informed basics: offer choice, ask don’t assume, never press for someone’s story, and protect privacy.</p></div>
+    <div class="card"><div class="ico">🩺</div><h3>Counselling</h3><p>Delivered only by registered professionals: psychologists, registered counsellors and social workers, working under supervision. Volunteers are never therapists.</p></div>
+    <div class="card"><div class="ico">🧭</div><h3>A clear referral path</h3><p>If someone is in crisis, volunteers follow a simple script and connect them to the right service.</p></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>Free help, 24 hours a day</h3>
+    <div class="hotline"><span>Emergency</span><a href="tel:112">112</a></div>
+    <div class="hotline"><span>Suicide crisis line</span><a href="tel:0800567567">0800 567 567</a></div>
+    <div class="hotline"><span>Mental health helpline</span><a href="tel:0800456789">0800 456 789</a></div>
+    <div class="hotline"><span>Lifeline counselling</span><a href="tel:0861322322">0861 322 322</a></div>
+    <div class="hotline"><span>Gender-based violence</span><a href="tel:0800428428">0800 428 428</a></div>
+    <div class="hotline"><span>Substance abuse</span><a href="tel:0800121314">0800 12 13 14</a></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>Are you a registered counsellor, psychologist or social worker?</h3><p>We’re looking for professionals to donate a few supervised hours a month. Counselling starts here once a qualified professional joins, and we will say so on this page.</p>
+    <form id="pf"><input name="n" placeholder="Your name" required><input name="r" placeholder="Profession and registration body" required><button class="btn" type="submit">Send on WhatsApp</button></form></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <span class="kick">What we need</span>
+  <h2>Things that keep people safe and warm.</h2>
+  <div class="grid">
+    <div class="card"><div class="ico">🛏️</div><h3>Blankets &amp; duvets</h3><p>Washed and folded.</p></div>
+    <div class="card"><div class="ico">⛺</div><h3>Tents &amp; tarps</h3><p>Complete with poles and pegs.</p></div>
+    <div class="card"><div class="ico">🎒</div><h3>Backpacks &amp; camping gear</h3><p>Sleeping bags, mats, torches, stoves, water bottles.</p></div>
+    <div class="card"><div class="ico">🧥</div><h3>Clothing &amp; shoes</h3><p>Jackets, jerseys, socks, takkies.</p></div>
+    <div class="card"><div class="ico">🧼</div><h3>Sanitary items</h3><p>Pads, tampons, soap, toothpaste, toilet paper.</p></div>
+    <div class="card"><div class="ico">🥫</div><h3>Non-perishable food</h3><p>Tinned food, rice, pasta, oats, peanut butter. In date, please.</p></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>Please leave out</h3><ul><li>Dirty, torn, damp or broken items</li><li>Opened or out-of-date food</li><li>Anything you wouldn’t use yourself</li></ul></div>
+</div></section>
+
+<section id="donate"><div class="wrap">
+  <span class="kick">Donate</span>
+  <h2>Give what you can.</h2>
+  <div class="two">
+    <div class="card"><h3>Donate items</h3><p>Tell us what you have. We’ll arrange a drop-off or pick-up.</p>
+      <form id="df"><input name="n" placeholder="Your name" required>
+      <select name="t"><option>Blankets</option><option>Tents &amp; tarps</option><option>Backpacks &amp; camping gear</option><option>Clothing &amp; shoes</option><option>Sanitary items</option><option>Non-perishable food</option><option>A mix</option></select>
+      <input name="s" placeholder="Your suburb" required>
+      <select name="m"><option>I’ll drop off</option><option>Please collect</option></select>
+      <button class="btn" type="submit">Send on WhatsApp</button></form></div>
+    <div class="card"><h3>Donate funds</h3><p>Money goes straight into the skills centre, the halfway house and the meals fund. Every rand is published.</p>
+      <p style="margin-top:12px"><b>Bank:</b> <span id="bk1"></span><br><b>Account name:</b> <span id="bk2"></span><br><b>Account no:</b> <span id="bk3"></span><br><b>Reference:</b> your name</p>
+      <p class="note">Bank details go live once our account is open. Please don’t send money before then.</p>
+      <p style="margin-top:12px"><a class="btn" href="#" id="gf">Tell us you’ve donated</a></p></div>
+  </div>
+</div></section>
+
+<section class="alt" id="involved"><div class="wrap">
+  <span class="kick">Get involved</span>
+  <h2>Hands and skills are donations too.</h2>
+  <div class="two">
+    <div class="card"><h3>Volunteer</h3><p>Sort, pack, drive, cook or deliver. Sorting mornings are indoors and relaxed. Deliveries are in pairs, in daylight.</p>
+      <form id="vf"><input name="n" placeholder="Your name" required>
+      <select name="r"><option>Sorting</option><option>Driving / pick-ups</option><option>Cooking</option><option>Delivering</option><option>Spreading the word</option></select>
+      <button class="btn" type="submit">Send on WhatsApp</button></form></div>
+    <div class="card"><h3>Share a skill</h3><p>Teachers, tradespeople, cooks, nurses, IT, builders, writers, counsellors: you’ll be the faculty of our skills centre.</p>
+      <form id="sf"><input name="n" placeholder="Your name" required><input name="k" placeholder="Your skill or trade" required>
+      <button class="btn" type="submit">Send on WhatsApp</button></form></div>
+    <div class="card"><h3>Host a collection bin</h3><p>A shop, church, school, office or complex puts out one marked bin. We collect it weekly.</p>
+      <form id="hf"><input name="n" placeholder="Your name" required><input name="p" placeholder="Place and street" required>
+      <button class="btn" type="submit">Send on WhatsApp</button></form></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <span class="kick">Incentivise &amp; uplift</span>
+  <h2>Everyone who helps climbs.</h2>
+  <div class="grid">
+    <div class="card"><div class="ico">🏅</div><h3>Hours badges</h3><p>Every volunteer hour is logged. Bronze at 10 hours, Silver at 25 and Gold at 50.</p></div>
+    <div class="card"><div class="ico">📄</div><h3>A written reference</h3><p>Anyone who volunteers, including people we’re helping, gets a signed reference to take to employers.</p></div>
+    <div class="card"><div class="ico">🧱</div><h3>Wall of Warmth</h3><p>Donors and volunteers are thanked publicly, with consent, on this page.</p></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>Wall of Warmth</h3><div id="wall"></div></div>
+</div></section>
+
+
+<section class="alt" id="documents"><div class="wrap">
+  <span class="kick">Published online</span>
+  <h2>Our rules, in the open.</h2>
+  <p class="lead">Anyone can read, question and hold us to these.</p>
+  <div style="margin-top:20px">
+  <details><summary>Volunteer code of conduct</summary><ul><li>Treat everyone with dignity, whether they give or receive.</li><li>Work in pairs and in daylight. Never enter a private home.</li><li>Never give or accept cash, gifts or favours outside the programme.</li><li>Never take photos or share stories without written consent.</li><li>Keep private information private.</li><li>No alcohol or drugs while volunteering.</li><li>Report any concern to the coordinator straight away.</li><li>Breaking these rules ends volunteering.</li></ul></details>
+  <details><summary>Safeguarding</summary><ul><li>No volunteer is ever alone with a child or vulnerable person.</li><li>Volunteers are screened and have a probation period.</li><li>Concerns are recorded, reviewed and acted on.</li></ul></details>
+  <details><summary>Money rules</summary><ul><li>Two people sign off every payment.</li><li>No salaries and no profit.</li><li>Donations and spending are posted in the public ledger.</li><li>Books are independently reviewed once a year and the report is published.</li></ul></details>
+  <details><summary>Independent review</summary><ul><li>Financial: an independent accounting professional.</li><li>Programme: a panel of three community reviewers outside our team.</li><li>Reports are posted here, including what we got wrong.</li></ul></details>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <span class="kick">A Mlungu concept</span>
+  <h2>One neighbour’s idea, offered to Table View.</h2>
+  <p class="lead">This is a proudly Mlungu concept and prototype: an idea from an ordinary resident, built in the open and shared for everyone to improve. It isn’t a finished organisation yet. It’s a starting point, and it only becomes real if neighbours pick it up.</p>
+  <div class="grid">
+    <div class="card"><h3>Crowd-sourced</h3><p>Items, hours, skills and ideas come from the community.</p></div>
+    <div class="card"><h3>Crowd-funded</h3><p>Small gifts, added together, build the centre and the house.</p></div>
+    <div class="card"><h3>Goal-driven</h3><p>Every action points at one finish line: skills centre, halfway house, 3 meals a day.</p></div>
+    <div class="card"><h3>Open books</h3><p>No salaries, no profit. Donations and spending are published.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <span class="kick">Questions</span>
+  <h2>Good to know.</h2>
+  <details><summary>Why gear and food, not cash on the street?</summary><p>Items go straight to a need. Funds are pooled to build lasting things: the centre, the house and the meals.</p></details>
+  <details><summary>Is it safe to volunteer?</summary><p>Yes. We work in pairs, in daylight and in public places, and we never enter homes.</p></details>
+  <details><summary>Are you a registered organisation?</summary><p>Not yet. We’re a prototype, and we’ll complete the legal registration needed before we take any funds.</p></details>
+  <details><summary>Can I share this?</summary><p>Please do. <a href="#" id="sh" style="color:var(--sun);font-weight:700">Share this page</a></p></details>
+</div></section>
+
+<footer><div class="wrap">
+  <p><b>Our rules:</b> volunteer-run · profit-free · independently reviewed · open books · trauma-informed · open source · Ubuntu.</p>
+  <p><b>🇿🇦 Proudly Mlungu concept &amp; prototype.</b> An independent community idea for Table View. <a href="#" id="wa">WhatsApp us</a></p>
+</div></footer>
+
+<script>
+/* ===== EDIT THESE ===== */
+var CFG={
+  whatsapp:"27000000000",
+  bank:["[bank]","[account name]","[number]"],
+  goals:[                       // targets are PLACEHOLDERS until you have real quotes
+    {t:"Community skills centre",have:0,goal:300000},
+    {t:"Halfway house",have:0,goal:500000},
+    {t:"3 meals a day fund (per year)",have:0,goal:250000}
+  ],
+  wall:[],                      // names, with permission
+  mealCost:25,                  // PLACEHOLDER: rand per meal, set from a real quote
+  stats:{items:0,hours:0,meals:0,volunteers:0},
+  posts:[                       // set done:true as you reach each one
+    {t:"Base camp",m:"10 volunteers · 3 collection bins · first 100 blankets handed out",d:"Prove the idea works in our own streets.",done:false},
+    {t:"First ledge",m:"NPO registered · bank account open · 25 Table Club members",d:"Become official, accountable and able to take funds.",done:false},
+    {t:"Halfway up",m:"Monthly skills days in a borrowed hall · 5 skill-sharers · a weekly hot meal",d:"Start teaching and feeding before we own a building.",done:false},
+    {t:"Upper ledge",m:"First house with 4 beds · 5 open-door employers · 100 Table Club members",d:"Open a safe place to sleep and a route to work.",done:false},
+    {t:"Summit",m:"Our own skills centre · halfway house at capacity · 3 meals a day · graduates in work",d:"The full hand up, running year-round.",done:false}
+  ]
+};
+/* ======================= */
+var $=function(i){return document.getElementById(i)};
+function wa(m){window.open("https://wa.me/"+CFG.whatsapp+"?text="+encodeURIComponent(m),"_blank")}
+function R(x){return"R"+x.toLocaleString("en-ZA")}
+$("wa").href="https://wa.me/"+CFG.whatsapp;
+["bk1","bk2","bk3"].forEach(function(id,i){$(id).textContent=CFG.bank[i]});
+$("goals").innerHTML="<h3 style='font-size:1.3rem'>Funding goals</h3>"+CFG.goals.map(function(g){var p=Math.min(100,Math.round(g.have/g.goal*100));return"<div class='g'><b>"+g.t+"</b><div class='bar'><i data-w='"+Math.max(p,2)+"'></i></div><div class='meta'><span>"+R(g.have)+" raised</span><span>Goal "+R(g.goal)+"</span></div></div>"}).join("");
+new IntersectionObserver(function(e,o){if(e[0].isIntersecting){document.querySelectorAll("#goals i").forEach(function(i){i.style.width=i.dataset.w+"%"});o.disconnect()}}).observe($("goals"));
+$("wall").innerHTML=CFG.wall.length?CFG.wall.map(function(n){return"<span class='pill'>"+n+"</span>"}).join(""):"<p>Be the first name on the wall.</p>";
+$("df").onsubmit=function(e){e.preventDefault();var f=e.target;wa("Donation. Name: "+f.n.value+". Items: "+f.t.value+". Suburb: "+f.s.value+". "+f.m.value+".")};
+$("vf").onsubmit=function(e){e.preventDefault();var f=e.target;wa("Volunteering. Name: "+f.n.value+". Role: "+f.r.value)};
+$("sf").onsubmit=function(e){e.preventDefault();var f=e.target;wa("Skills offer. Name: "+f.n.value+". Skill: "+f.k.value)};
+$("pf").onsubmit=function(e){e.preventDefault();var f=e.target;wa("Professional volunteer. Name: "+f.n.value+". Profession: "+f.r.value)};
+$("if").onsubmit=function(e){e.preventDefault();var f=e.target;wa("Idea for Warm Table View"+(f.n.value?" from "+f.n.value:"")+": "+f.d.value)};
+$("hf").onsubmit=function(e){e.preventDefault();var f=e.target;wa("I'd like to host a collection bin. Name: "+f.n.value+". Place: "+f.p.value)};
+$("gf").onclick=function(e){e.preventDefault();wa("Hi, I've made a donation to Warm Table View.")};
+$("sh").onclick=function(e){e.preventDefault();var u=location.href,t="Warm Table View: help neighbours in need";if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{window.open("https://wa.me/?text="+encodeURIComponent(t+" "+u),"_blank")}};
+
+var cur=CFG.posts.findIndex(function(p){return!p.done});
+$("posts").innerHTML=CFG.posts.map(function(p,i){var c=p.done?"done":i===cur?"now":"";return"<div class='post "+c+"'><div class='flag'>"+(p.done?"✓":i+1)+"</div><div><h3>"+p.t+(i===cur?"<span class='tag'>We are here</span>":"")+"</h3><div class='m'>"+p.m+"</div><p>"+p.d+"</p></div></div>"}).join("");
+var amt=50,mem=200;
+function club(){
+  $("amts").innerHTML="";[20,50,100,250].forEach(function(a){var b=document.createElement("button");b.textContent="R"+a+" a month";b.setAttribute("aria-pressed",a===amt);b.onclick=function(){amt=a;club()};$("amts").appendChild(b)});
+  var t=mem*amt,ppl=Math.floor(t/(CFG.mealCost*3*30));
+  $("mv").textContent=mem;$("tot").textContent=R(t)+" a month";
+  $("out").textContent=ppl>0?"That could give "+ppl+" "+(ppl>1?"people":"person")+" 3 meals a day, every day.":"Add more neighbours to start covering daily meals.";
+  $("nn").textContent="Estimate at R"+CFG.mealCost+" a meal (placeholder). Surplus food rescue could stretch it further.";
+}
+$("mem").oninput=function(){mem=+this.value;club()};club();
+$("jc").onclick=function(e){e.preventDefault();wa("Hi! I'd like to join the Table Club at R"+amt+" a month.")};
+var S=CFG.stats;$("stats").innerHTML=[[S.items,"items collected"],[S.hours,"volunteer hours"],[S.meals,"meals served"],[S.volunteers,"volunteers"]].map(function(x){return"<div class='stat'><b>"+x[0].toLocaleString("en-ZA")+"</b><span>"+x[1]+"</span></div>"}).join("");
+</script>
+</body>
+</html>
